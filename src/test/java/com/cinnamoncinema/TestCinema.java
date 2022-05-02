@@ -14,5 +14,14 @@ public class TestCinema {
             assertTrue(cinema.allocateSeats(1));
     }
 
-
+    @Test
+    public void testWithAllocatingFifteenSeats(){
+        Cinema cinema = new Cinema();
+        assertTrue(cinema.allocateSeats(3));
+        assertTrue(cinema.allocateSeats(3));
+        assertTrue(cinema.allocateSeats(3));
+        assertTrue(cinema.allocateSeats(3));
+        assertTrue(cinema.allocateSeats(3));
+        assertFalse(cinema.allocateSeats(1));
+    }
 }
