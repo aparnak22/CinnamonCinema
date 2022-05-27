@@ -41,7 +41,7 @@ Constraints :
 
 ## Possible Enhancements
 
-1. Return the allocated seats. 
+1. Return the allocated seat number. 
 2. Do not split a single request across rows. This would require the program to look at previous rows to allocate any empty seats.
 3. Display seating plan. 
 4. Allow user to choose seats. 
