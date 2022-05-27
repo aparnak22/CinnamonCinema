@@ -2,6 +2,7 @@ package com.cinnamoncinema;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Cinema {
 
@@ -13,9 +14,9 @@ public class Cinema {
 
     private static int MAX_CAPACITY_SEATS;
 
-    private final boolean[][] seats;
+    private  boolean[][] seats;
 
-    private final String[] rowNames ;
+    private  String[] rowNames ;
 
     int seatsBooked = 0;
 
@@ -31,6 +32,9 @@ public class Cinema {
         rowNames = CinemaUtils.generateRowNames(maxRows);
     }
 
+    public Cinema(int maxRows, int defaultNoOfSeats, Map<Integer, Integer>rowsWithSpecificNoOfSeats){
+
+    }
 
     /**
      * Allocate the given number of seats.

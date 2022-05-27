@@ -52,7 +52,8 @@ Constraints :
 
 ## Further feature Enhancements
 
-4. Support further customisation of the seating plan by allowing variable number of columns in each row. 
+4. Support further customisation of the seating plan by allowing variable number of columns in each row.
+5. Customise the row names instead of generating them. 
 6. Display seating plan. 
 7. Allow user to choose seats. 
 
