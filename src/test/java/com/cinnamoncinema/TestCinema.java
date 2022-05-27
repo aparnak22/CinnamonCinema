@@ -44,4 +44,28 @@ public class TestCinema {
         assertIterableEquals(Arrays.asList(threeSeatsInRowB),secondSetOfThreeSeats);
 
     }
+
+    @Test
+    public void testCustomisingCinemaSizeWith26Rows5Columns(){
+        //26 rows by 10 cols
+        Cinema cinema = new Cinema(26,5);
+
+        String[] fourSeatsInRowA = {"A1","A2","A3","A4"};
+        String[] threeSeatsInRowB = {"B1","B2","B3"};
+        String[] lastSetOfSeatsInRowE = {"E1","E2","E3","E4","E5"};
+
+
+        List<String> firstSetOfFourSeats = cinema.allocateSeats(4);
+        List<String> secondSetOfThreeSeats = cinema.allocateSeats(3);
+        cinema.allocateSeats(3); //Row C
+        cinema.allocateSeats(4); //Row D
+        List<String> lastSetOfSeats = cinema.allocateSeats(5); //Row E
+
+        assertIterableEquals(Arrays.asList(fourSeatsInRowA),firstSetOfFourSeats);
+        assertIterableEquals(Arrays.asList(threeSeatsInRowB),secondSetOfThreeSeats);
+        assertIterableEquals(Arrays.asList(lastSetOfSeatsInRowE),lastSetOfSeats);
+
+    }
+
+
 }

@@ -39,14 +39,25 @@ Constraints :
 2. The Cinema class returns only true or false to indicate seats could be allocated and  does not return the allocated seat numbers.
 3. The allocation can be split across two rows for a request.
 
-## Possible Enhancements
 
-1. Return the allocated seat number. - Done
-2. Do not split a single request across rows. This would require the program to look at previous rows to allocate any empty seats.
-3. Create customised seating plan.
-4. Display seating plan. 
-5. Allow user to choose seats. 
+## Enhancements 
+
+1. Return the allocated seat number. 
+    The allocated seat numbers are returned as a List of strings in the format "<Seat Name><Column number"
+
+2. Do not split a single request across rows. This would require the program to look at previous rows to allocate any empty seats. 
+   Seats are allocated together within the same row. 
+
+3. Create customised seating plan by specifying the number of rows and seats in a row. Each row has the same number of seats, in a grid structure.
+
+## Further feature Enhancements
+
+4. Support further customisation of the seating plan by allowing variable number of columns in each row. 
+6. Display seating plan. 
+7. Allow user to choose seats. 
 
 
+## Further code enhancements
 
+Use Junit 5 for testing 
 
