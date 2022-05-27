@@ -24,12 +24,13 @@ public class Cinema {
             while ( r < MAX_ROWS && noOfSeatsAllocated < noOfSeatsRequested ){
                 int c = 0;
                 while ( c < MAX_COLS && noOfSeatsAllocated < noOfSeatsRequested ){
-                    if (!seats[r][c]) {
+                    if (!seats[r][c] && (MAX_COLS-c >= (noOfSeatsRequested - noOfSeatsAllocated))) {
                         seats[r][c] = true;
                         allocatedSeats.add(rowNames[r] + (c+1));
                         noOfSeatsAllocated ++;
                     }
                     c++;
+
                 }
                 r++;
             }
