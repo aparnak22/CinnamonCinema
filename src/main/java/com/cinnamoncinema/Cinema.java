@@ -42,8 +42,7 @@ public class Cinema {
         rowNames = CinemaUtils.generateRowNames(maxRows);
     }
 
-    private void createSeats(int maxRows, int defaultNoOfSeats,
-                             Map<Integer, Integer> variableSeatRows) {
+    private void createSeats(int maxRows, int defaultNoOfSeats,      Map<Integer, Integer> variableSeatRows) {
         this.maxRows = maxRows;
         seats = new ArrayList<>();
         int noOfSeatsInRow;
@@ -83,10 +82,7 @@ public class Cinema {
                 boolean[] seatRow = seats.get(r);
                 while ( c < seatRow.length && noOfSeatsAllocated < noOfSeatsRequested ){
                     //check that the row has the requested number of seats available
-                    if (!seatRow[c] && (seatRow.length-c >= (noOfSeatsRequested - noOfSeatsAllocated))) {
-                        seatRow[c] = true;
-                        allocatedSeats.add(rowNames[r] + (c+1));
-                        noOfSeatsAllocated ++;
+                    if (!seatRow[c] && (seatRow.length-c >= (noOfSeatsRequested - noOfSeatsAllocated))) { seatRow[c] = true; allocatedSeats.add(rowNames[r] + (c+1)); noOfSeatsAllocated ++;
                     }
                     c++;
                 }

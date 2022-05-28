@@ -1,17 +1,25 @@
 package com.cinnamoncinema;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 
 public class TestCinema {
 
+    Cinema rangeCinema = new Cinema();
     @Test
     public void testWithAllocatingOneSeat(){
             Cinema cinema = new Cinema();
@@ -45,6 +53,35 @@ public class TestCinema {
         assertIterableEquals(Arrays.asList(threeSeatsInRowA),firstSetOfThreeSeats);
         assertIterableEquals(Arrays.asList(threeSeatsInRowB),secondSetOfThreeSeats);
 
+    }
+
+    static Stream<Arguments> inputAndExpectedListProvider() {
+        return Stream.of(
+                arguments( 3, Arrays.asList("A1", "A2", "A3")),
+                arguments( 3, Arrays.asList("A1", "A2", "A3")),
+                arguments( 2, Arrays.asList("A1", "A2")));
+    }
+
+    @ParameterizedTest
+    @MethodSource("inputAndExpectedListProvider")
+    public void testRangeOfAllocatingSeatsTogether(int input, List<String>  expectedResult) {
+         //3 rows by 5 cols
+         List<String> firstSetOfThreeSeats = rangeCinema.allocateSeats(input);
+        assertIterableEquals(expectedResult, firstSetOfThreeSeats);
+    }
+
+
+    @Test
+    public void testAllocatingSeatsTogether() {
+        //3 rows by 5 cols
+        List<String> firstSetOfThreeSeats = rangeCinema.allocateSeats(3);
+        assertIterableEquals(Arrays.asList("A1", "A2", "A3"), firstSetOfThreeSeats);
+
+        List<String> secondSetOfThreeSeats = rangeCinema.allocateSeats(3);
+        assertIterableEquals(Arrays.asList("B1", "B2", "B3"), secondSetOfThreeSeats);
+
+        List<String> thirdSetOfThreeSeats = rangeCinema.allocateSeats(2);
+        assertIterableEquals(Arrays.asList("A4", "A5"), thirdSetOfThreeSeats);
     }
 
     @Test

@@ -40,19 +40,20 @@ Constraints :
 3. The allocation can be split across two rows for a request.
 
 
-## Enhancements 
+## Completed Enhancements 
 
 1. Return the allocated seat number. 
-    The allocated seat numbers are returned as a List of strings in the format "<Seat Name><Column number"
+    The allocated seat numbers are returned as a List of strings in the format "<Seat Name><Column number>"
 
 2. Do not split a single request across rows. This would require the program to look at previous rows to allocate any empty seats. 
    Seats are allocated together within the same row. 
 
 3. Create customised seating plan by specifying the number of rows and seats in a row. Each row has the same number of seats, in a grid structure.
+   
+4. Support further customisation of the seating plan by allowing variable number of columns in each or some rows.
 
 ## Further feature Enhancements
 
-4. Support further customisation of the seating plan by allowing variable number of columns in each row.
 5. Customise the row names instead of generating them. 
 6. Display seating plan. 
 7. Allow user to choose seats. 
@@ -60,6 +61,7 @@ Constraints :
 
 ## Further code enhancements
 
-1. Use Junit 5 for testing
+ Use Junit 5 for testing - used Parameterized test cases.
+
 2. Do not check rows that are full or have less than required no of seats
 
