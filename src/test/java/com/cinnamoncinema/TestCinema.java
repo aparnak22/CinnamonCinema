@@ -3,7 +3,9 @@ package com.cinnamoncinema;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -67,5 +69,27 @@ public class TestCinema {
 
     }
 
+    @Test
+    public void testCinemaWithVariableRowSize(){
+        //3 rows of 5 and 2 rows of 7
+        Map<Integer,Integer> lastTwoRows = new HashMap<>();
+        lastTwoRows.put(3,7);
+        lastTwoRows.put(4,7);
 
+        Cinema cinema = new Cinema(5,5, lastTwoRows);
+
+        String[] sixSeatsInRowD = {"D1","D2","D3","D4","D5","D6"};
+        String[] threeSeatsInRowA = {"A1","A2","A3"};
+        String[] lastSetOfSeatsInRowE = {"E1","E2","E3","E4","E5","E6"};
+
+
+        List<String> firstSetOfSixSeats = cinema.allocateSeats(6);
+        List<String> secondSetOfThreeSeats = cinema.allocateSeats(3);
+        List<String> lastSetOfSeats = cinema.allocateSeats(6); //Row E
+
+        assertIterableEquals(Arrays.asList(sixSeatsInRowD),firstSetOfSixSeats);
+        assertIterableEquals(Arrays.asList(threeSeatsInRowA),secondSetOfThreeSeats);
+        assertIterableEquals(Arrays.asList(lastSetOfSeatsInRowE),lastSetOfSeats);
+
+    }
 }

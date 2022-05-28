@@ -60,5 +60,6 @@ Constraints :
 
 ## Further code enhancements
 
-Use Junit 5 for testing 
+1. Use Junit 5 for testing
+2. Do not check rows that are full or have less than required no of seats
 
