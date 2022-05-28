@@ -6,6 +6,21 @@ import java.util.List;
 import java.util.Map;
 
 public class Cinema {
+    class CinemaRow{
+        int rowCapacity;
+        List<Boolean> bookedSeats;
+        CinemaRow(int rowCapacity){
+            this.rowCapacity = rowCapacity;
+            bookedSeats = new ArrayList<>();
+        }
+        boolean seatsAvailable(int seatsRequested){
+            return rowCapacity - bookedSeats.size() >= seatsRequested;
+        }
+        int bookSeat(){
+            bookedSeats.add(Boolean.TRUE);
+            return bookedSeats.size();
+        }
+    }
 
     private static final int DEFAULT_MAX_ROWS = 3;
     private static final int DEFAULT_MAX_COLS = 5;
@@ -14,7 +29,7 @@ public class Cinema {
 
     private int totalSeatCapacity;
 
-    private List<boolean[]> seats;
+    private List<CinemaRow> seats;
 
     private final  String[] rowNames ;
 
@@ -42,7 +57,8 @@ public class Cinema {
         rowNames = CinemaUtils.generateRowNames(maxRows);
     }
 
-    private void createSeats(int maxRows, int defaultNoOfSeats,      Map<Integer, Integer> variableSeatRows) {
+    private void createSeats(int maxRows, int defaultNoOfSeats,
+                             Map<Integer, Integer> variableSeatRows) {
         this.maxRows = maxRows;
         seats = new ArrayList<>();
         int noOfSeatsInRow;
@@ -52,9 +68,8 @@ public class Cinema {
             else
                 noOfSeatsInRow = defaultNoOfSeats;
 
-            boolean[] seatsInRow = new boolean[noOfSeatsInRow];
-            Arrays.fill(seatsInRow,false);
-            seats.add(seatsInRow);
+            CinemaRow row = new CinemaRow(noOfSeatsInRow);
+            seats.add(row);
 
             totalSeatCapacity += noOfSeatsInRow;
         }
@@ -78,17 +93,25 @@ public class Cinema {
         if ( noOfSeatsRequested <= getAvailableSeats()) {
             int r= 0;
             while ( r < maxRows && noOfSeatsAllocated < noOfSeatsRequested ){
-                int c = 0;
-                boolean[] seatRow = seats.get(r);
-                while ( c < seatRow.length && noOfSeatsAllocated < noOfSeatsRequested ){
-                    //check that the row has the requested number of seats available
-                    if (!seatRow[c] && (seatRow.length-c >= (noOfSeatsRequested - noOfSeatsAllocated))) { seatRow[c] = true; allocatedSeats.add(rowNames[r] + (c+1)); noOfSeatsAllocated ++;
+
+                CinemaRow seatRow = seats.get(r);
+                //check that the row has the requested number of seats available
+                if ( seatRow.seatsAvailable(noOfSeatsRequested) ) {
+
+                    int c = seatRow.bookedSeats.size() - 1; //first available seat in the row
+                    while (c < seatRow.rowCapacity &&
+                            noOfSeatsAllocated < noOfSeatsRequested ) {
+                            int seatNo = seatRow.bookSeat();
+                            allocatedSeats.add(rowNames[r] + seatNo);
+                            noOfSeatsAllocated++;
+                            c++;
                     }
-                    c++;
+
                 }
                 r++;
             }
-        }
+
+         }
         seatsBooked+=noOfSeatsAllocated;
         return allocatedSeats;
     }

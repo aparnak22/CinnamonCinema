@@ -13,6 +13,5 @@ public class TestSeatBooker {
         int seatsBooked  = seatBooker.bookAllSeats();
         System.out.println("Total seats booked = " + seatsBooked);
         assertTrue(seatsBooked <= 15 && seatsBooked >12);
-
     }
 }
